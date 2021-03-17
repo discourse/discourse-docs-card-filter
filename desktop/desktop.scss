@@ -1,0 +1,11 @@
+// Override Knowledge Explorer widths
+
+.docs-browse .docs-filters {
+  margin-top: 0.15em;
+  flex: 0 1 30%;
+  min-width: 175px;
+}
+
+.docs-browse .docs-items .docs-item {
+  padding: 0.25em 0;
+}

@@ -1,0 +1,90 @@
+.docs-cards-filter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  justify-items: center;
+  width: 95%;
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 0;
+  @media screen and (max-width: 800px) {
+    grid-template-columns: repeat(2, 48%);
+    grid-column-gap: 4%;
+  }
+}
+
+.visible .docs-cards-filter {
+  max-height: 500px;
+  height: auto;
+  overflow: visible;
+  opacity: 1;
+  margin: 2em auto;
+}
+
+.docs-cards-filter.tags-filter {
+  grid-template-columns: repeat(auto-fit, minmax(15%, 1fr));
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+}
+
+.docs-card-box {
+  &:visited {
+    color: var(--primary);
+  }
+  width: calc(100% - 2em - 2px);
+  border: 1px solid var(--primary-low-mid);
+  padding: 1em;
+  border-radius: 0.25em;
+  color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 8px 0px var(--primary-low);
+  &:hover {
+    color: var(--primary);
+    box-shadow: 0 6px 8px 4px var(--primary-low);
+    transform: translateY(-3px);
+  }
+  transition: all 0.1s ease-in-out;
+
+  &-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1em;
+    .d-icon.card-tag-icon {
+      font-size: 0.75em;
+      color: var(--primary-low-mid);
+      margin-right: 0.5em;
+    }
+    .d-icon:not(.card-tag-icon) {
+      font-size: 1em;
+      background-color: var(--tertiary-low);
+      padding: 0.5em;
+      color: var(--tertiary);
+      border-radius: 50%;
+      margin-right: 0.5em;
+    }
+    &-title {
+      margin: 0;
+    }
+  }
+  &-description {
+    font-size: $font-down-1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  &-count {
+    font-size: $font-down-1;
+    margin-top: auto;
+  }
+}
+
+.docs-card-box-header-badge-category-bg {
+    width: 10px;
+    height: 10px;
+    margin-right: 0.25em;
+}

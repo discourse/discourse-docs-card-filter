@@ -1,0 +1,16 @@
+<a class="docs-card-box category-card" onclick={{selectCategory}}>
+  <div class="docs-card-box-header">
+    {{#if categoryIcon}}
+      {{d-icon categoryIcon}}
+    {{else}}
+      <span class="docs-card-box-header-badge-category-bg" style="background-color: {{categoryColor}}"></span>
+    {{/if}}
+    <h3 class="docs-card-box-header-title">{{categoryName}}</h3>
+  </div>
+
+  {{#if hasDescription}}
+    <p class="docs-card-box-description">{{html-safe categoryDescription}}</p>
+  {{/if}}
+
+  <span class="docs-card-box-count">{{topicCount}}</span>
+</a>

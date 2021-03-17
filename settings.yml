@@ -1,0 +1,12 @@
+category_icons:
+  type: string
+  default: "1,heart|2,times"
+  description: "Choose icons for corresponding category IDs. ex. '6,heart' would assign the heart icon to category 6."
+category_description:
+  type: bool
+  default: false
+  description: "Enable the category description to be displayed in the category card filters for the docs page."
+tag_icons:
+  type: string
+  default: "featured,heart|videos,times"
+  description: "Choose icons for corresponding tag slugs. ex. 'featured,heart' would assign the heart icon to featured tag."

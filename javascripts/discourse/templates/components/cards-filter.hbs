@@ -1,0 +1,13 @@
+{{#if includedCategories}}
+  <div class="docs-cards-filter categories-filter">
+    {{#each includedCategories as |category|}}
+      {{category-wrapper category=category categoryIcons=categoryIcons includedCategories=includedCategories updateSelectedCategory=updateSelectedCategory}}
+    {{/each}}
+  </div>
+{{/if}}
+
+<div class="docs-cards-filter tags-filter">
+  {{#each includedTags as |tag|}}
+    {{tag-wrapper tag=tag tagIcons=tagIcons includedTags=includedTags updateSelectedTag=updateSelectedTag}}
+  {{/each}}
+</div>

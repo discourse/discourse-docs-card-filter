@@ -1,0 +1,13 @@
+
+<a class="docs-card-box tag-card" onclick={{selectTag}}>
+  <div class="docs-card-box-header">
+    {{#if tagIcon}}
+      {{d-icon tagIcon}}
+    {{else}}
+      {{d-icon "tag" class="card-tag-icon"}}
+    {{/if}}
+    <h3 class="docs-card-box-header-title">{{tagTitle}}</h3>
+  </div>
+
+  <span class="docs-card-box-count">{{topicCount}}</span>
+</a>
