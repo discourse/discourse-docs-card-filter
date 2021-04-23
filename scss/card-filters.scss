@@ -9,10 +9,6 @@
   overflow: hidden;
   transition: all 0.3s ease;
   opacity: 0;
-  @media screen and (max-width: 800px) {
-    grid-template-columns: repeat(2, 48%);
-    grid-column-gap: 4%;
-  }
 }
 
 .visible .docs-cards-filter {
@@ -21,12 +17,6 @@
   overflow: visible;
   opacity: 1;
   margin: 2em auto;
-}
-
-.docs-cards-filter.tags-filter {
-  grid-template-columns: repeat(auto-fit, minmax(15%, 1fr));
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
 }
 
 .docs-card-box {
