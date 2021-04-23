@@ -1,13 +1,14 @@
-{{#if includedCategories}}
-  <div class="docs-cards-filter categories-filter">
-    {{#each includedCategories as |category|}}
-      {{category-wrapper category=category categoryIcons=categoryIcons includedCategories=includedCategories updateSelectedCategory=updateSelectedCategory}}
-    {{/each}}
+{{#if (or includedCategories includedTags)}}
+  <div class="docs-cards-filter categories-filter tag-filter">
+    {{#if includedCategories}}
+      {{#each includedCategories as |category|}}
+        {{category-wrapper category=category categoryIcons=categoryIcons updateSelectedCategory=updateSelectedCategory}}
+      {{/each}}
+    {{/if}}
+    {{#if includedTags}}
+      {{#each includedTags as |tag|}}
+        {{tag-wrapper tag=tag tagIcons=tagIcons updateSelectedTag=updateSelectedTag}}
+      {{/each}}
+    {{/if}}
   </div>
 {{/if}}
-
-<div class="docs-cards-filter tags-filter">
-  {{#each includedTags as |tag|}}
-    {{tag-wrapper tag=tag tagIcons=tagIcons includedTags=includedTags updateSelectedTag=updateSelectedTag}}
-  {{/each}}
-</div>
