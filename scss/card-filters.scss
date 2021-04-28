@@ -9,6 +9,9 @@
   overflow: hidden;
   transition: all 0.3s ease;
   opacity: 0;
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+  }
 }
 
 .visible .docs-cards-filter {
