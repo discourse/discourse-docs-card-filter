@@ -2,12 +2,12 @@
   <div class="docs-cards-filter categories-filter tag-filter">
     {{#if includedCategories}}
       {{#each includedCategories as |category|}}
-        {{category-wrapper category=category categoryIcons=categoryIcons updateSelectedCategory=updateSelectedCategory}}
+        {{category-wrapper category=category categoryOrders=categoryOrders categoryIcons=categoryIcons updateSelectedCategory=updateSelectedCategory}}
       {{/each}}
     {{/if}}
     {{#if includedTags}}
       {{#each includedTags as |tag|}}
-        {{tag-wrapper tag=tag tagIcons=tagIcons updateSelectedTag=updateSelectedTag}}
+        {{tag-wrapper tag=tag tagOrders=tagOrders tagIcons=tagIcons updateSelectedTag=updateSelectedTag}}
       {{/each}}
     {{/if}}
   </div>

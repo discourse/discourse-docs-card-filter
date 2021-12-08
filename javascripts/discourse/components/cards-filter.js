@@ -7,7 +7,6 @@ import { readOnly } from "@ember/object/computed";
 export default Component.extend({
   classNameBindings: ["shouldShow:visible"],
   router: service(),
-  
   init() {
     this._super(...arguments);
   },
@@ -41,7 +40,7 @@ export default Component.extend({
       includedCategories = categories.filter(category => {
         return pluginCategories.indexOf(`${category.id}`) !== -1;
       });
-    }    
+    }
     return includedCategories;
   },
 
@@ -69,6 +68,34 @@ export default Component.extend({
     })
 
     return icons;
+  },
+
+  @discourseComputed()
+  tagOrders() {
+    let order = {}
+
+    settings.tag_icons.split("|").forEach(data => {
+      const arrayData = data.split(",")
+      if (arrayData.length === 3) {
+        order[arrayData[0]] = arrayData[2];
+      }
+    })
+
+    return order;
+  },
+
+  @discourseComputed()
+  categoryOrders() {
+    let order = {}
+
+    settings.category_icons.split("|").forEach(data => {
+      const arrayData = data.split(",")
+      if (arrayData.length === 3) {
+        order[arrayData[0]] = arrayData[2];
+      }
+    })
+    console.log(order);
+    return order;
   },
 
   @discourseComputed()
