@@ -15,12 +15,12 @@ export default Component.extend({
 
   @action
   selectCategory() {
-    this.get('router').transitionTo('docs.index', {
+    this.get("router").transitionTo("docs.index", {
       queryParams: {
         category: this.category.id,
         order: this.order,
         ascending: this.ascending,
-      }
+      },
     });
   },
 
@@ -30,14 +30,16 @@ export default Component.extend({
   },
 
   @discourseComputed("categoryIcons", "categoryInfo.id")
-  categoryIcon(icons,id) {
+  categoryIcon(icons, id) {
     return icons[id];
   },
 
   @discourseComputed("categoryOrders", "categoryInfo.id")
-  order(orders ,id) {
-    if(orders[id] && orders[id].split("-").length > 0) {
-      if (this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())) {
+  order(orders, id) {
+    if (orders[id] && orders[id].split("-").length > 0) {
+      if (
+        this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())
+      ) {
         return orders[id].split("-")[0].trim().toLowerCase();
       }
     }
@@ -46,10 +48,10 @@ export default Component.extend({
   },
 
   @discourseComputed("categoryOrders", "categoryInfo.id")
-  ascending(orders ,id) {
-    if(orders[id] && orders[id].split("-").length > 1) {
+  ascending(orders, id) {
+    if (orders[id] && orders[id].split("-").length > 1) {
       if (orders[id].split("-")[1].trim().toLowerCase().startsWith("a")) {
-        return true
+        return true;
       }
     }
 
@@ -68,7 +70,7 @@ export default Component.extend({
 
   @discourseComputed("categoryInfo.description")
   categoryDescription(description) {
-    return description
+    return description;
   },
 
   @discourseComputed("categoryInfo.color")
@@ -89,4 +91,4 @@ export default Component.extend({
       return `${count} ${I18n.t(themePrefix("topic"))}`;
     }
   },
-})
+});

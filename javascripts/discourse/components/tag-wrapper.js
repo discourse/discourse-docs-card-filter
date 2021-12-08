@@ -14,19 +14,21 @@ export default Component.extend({
 
   @action
   selectTag() {
-    this.get('router').transitionTo('docs.index', {
+    this.get("router").transitionTo("docs.index", {
       queryParams: {
         tags: this.tag.id,
         order: this.order,
         ascending: this.ascending,
-      }
+      },
     });
   },
 
   @discourseComputed("tagOrders", "tag.id")
-  order(orders ,id) {
-    if(orders[id] && orders[id].split("-").length > 0) {
-      if (this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())) {
+  order(orders, id) {
+    if (orders[id] && orders[id].split("-").length > 0) {
+      if (
+        this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())
+      ) {
         return orders[id].split("-")[0].trim().toLowerCase();
       }
     }
@@ -35,10 +37,10 @@ export default Component.extend({
   },
 
   @discourseComputed("tagOrders", "tag.id")
-  ascending(orders ,id) {
-    if(orders[id] && orders[id].split("-").length > 1) {
+  ascending(orders, id) {
+    if (orders[id] && orders[id].split("-").length > 1) {
       if (orders[id].split("-")[1].trim().toLowerCase().startsWith("a")) {
-        return true
+        return true;
       }
     }
 
@@ -68,4 +70,4 @@ export default Component.extend({
       return `${count} ${I18n.t(themePrefix("topic"))}`;
     }
   },
-})
+});
