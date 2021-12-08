@@ -94,7 +94,7 @@ export default Component.extend({
         order[arrayData[0]] = arrayData[2];
       }
     });
-    console.log(order);
+
     return order;
   },
 
