@@ -7,7 +7,6 @@ import { readOnly } from "@ember/object/computed";
 export default Component.extend({
   classNameBindings: ["shouldShow:visible"],
   router: service(),
-  
   init() {
     this._super(...arguments);
   },
@@ -38,10 +37,10 @@ export default Component.extend({
     let includedCategories;
 
     if (categories) {
-      includedCategories = categories.filter(category => {
+      includedCategories = categories.filter((category) => {
         return pluginCategories.indexOf(`${category.id}`) !== -1;
       });
-    }    
+    }
     return includedCategories;
   },
 
@@ -52,7 +51,7 @@ export default Component.extend({
     let includedTags;
 
     if (tags) {
-      includedTags = tags.filter(category => {
+      includedTags = tags.filter((category) => {
         return pluginTags.indexOf(`${category.id}`) !== -1;
       });
     }
@@ -64,20 +63,48 @@ export default Component.extend({
   tagIcons() {
     let icons = {};
 
-    settings.tag_icons.split("|").forEach(data => {
+    settings.tag_icons.split("|").forEach((data) => {
       icons[data.split(",")[0]] = data.split(",")[1];
-    })
+    });
 
     return icons;
+  },
+
+  @discourseComputed()
+  tagOrders() {
+    let order = {};
+
+    settings.tag_icons.split("|").forEach((data) => {
+      const arrayData = data.split(",");
+      if (arrayData.length === 3) {
+        order[arrayData[0]] = arrayData[2];
+      }
+    });
+
+    return order;
+  },
+
+  @discourseComputed()
+  categoryOrders() {
+    let order = {};
+
+    settings.category_icons.split("|").forEach((data) => {
+      const arrayData = data.split(",");
+      if (arrayData.length === 3) {
+        order[arrayData[0]] = arrayData[2];
+      }
+    });
+
+    return order;
   },
 
   @discourseComputed()
   categoryIcons() {
     let icons = {};
 
-    settings.category_icons.split("|").forEach(data => {
+    settings.category_icons.split("|").forEach((data) => {
       icons[data.split(",")[0]] = data.split(",")[1];
-    })
+    });
 
     return icons;
   },
