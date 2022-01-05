@@ -60,7 +60,7 @@ export default Component.extend({
         }
 
         return (
-          pluginTags.indexOf(`${tag.id}`) !== -1 &&
+          pluginTags.includes(`${tag.id}`) &&
           !currentTags.includes(tag.id)
         );
       });
