@@ -14,45 +14,52 @@ export default Component.extend({
   @discourseComputed("router.currentRoute.queryParams")
   shouldShow(params) {
     if (!this.siteSettings.docs_enabled) return false;
-
-    if (params) {
-      if (Object.keys(params).length === 0) {
-        return true;
-      } else {
-        for (let param in params) {
-          if (params[param]) {
-            return false;
-          } else {
-            return true;
-          }
-        }
-      }
+    return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
     }
   },
 
-  @discourseComputed("categories")
-  includedCategories(categories) {
+  @discourseComputed("categories", "router.currentRoute.queryParams")
+  includedCategories(categories, params) {
     let pluginCategories = this.siteSettings.docs_categories.split("|");
 
     let includedCategories;
 
     if (categories) {
-      includedCategories = categories.filter((category) => {
-        return pluginCategories.indexOf(`${category.id}`) !== -1;
+      includedCategories = categories.filter(category => {
+        let currentCategory;
+
+        if (params?.category) {
+          currentCategory =
+            Number(params.category) === category.id ? category.id : "";
+        }
+
+        return (
+          pluginCategories.includes(`${category.id}`) &&
+          currentCategory !== category.id
+        );
       });
     }
     return includedCategories;
   },
 
-  @discourseComputed("tags")
-  includedTags(tags) {
+  @discourseComputed("tags", "router.currentRoute.queryParams")
+  includedTags(tags, params) {
     let pluginTags = this.siteSettings.docs_tags.split("|");
 
     let includedTags;
 
     if (tags) {
-      includedTags = tags.filter((category) => {
-        return pluginTags.indexOf(`${category.id}`) !== -1;
+      includedTags = tags.filter(tag => {
+        let currentTags = [];
+
+        if (params?.tags) {
+          currentTags.push(...params.tags.split("|"));
+        }
+
+        return (
+          pluginTags.includes(`${tag.id}`) &&
+          !currentTags.includes(tag.id)
+        );
       });
     }
 
@@ -63,7 +70,7 @@ export default Component.extend({
   tagIcons() {
     let icons = {};
 
-    settings.tag_icons.split("|").forEach((data) => {
+    settings.tag_icons.split("|").forEach(data => {
       icons[data.split(",")[0]] = data.split(",")[1];
     });
 
@@ -74,7 +81,7 @@ export default Component.extend({
   tagOrders() {
     let order = {};
 
-    settings.tag_icons.split("|").forEach((data) => {
+    settings.tag_icons.split("|").forEach(data => {
       const arrayData = data.split(",");
       if (arrayData.length === 3) {
         order[arrayData[0]] = arrayData[2];
@@ -88,7 +95,7 @@ export default Component.extend({
   categoryOrders() {
     let order = {};
 
-    settings.category_icons.split("|").forEach((data) => {
+    settings.category_icons.split("|").forEach(data => {
       const arrayData = data.split(",");
       if (arrayData.length === 3) {
         order[arrayData[0]] = arrayData[2];
@@ -102,10 +109,10 @@ export default Component.extend({
   categoryIcons() {
     let icons = {};
 
-    settings.category_icons.split("|").forEach((data) => {
+    settings.category_icons.split("|").forEach(data => {
       icons[data.split(",")[0]] = data.split(",")[1];
     });
 
     return icons;
-  },
+  }
 });
