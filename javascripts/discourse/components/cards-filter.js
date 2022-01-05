@@ -14,10 +14,7 @@ export default Component.extend({
   @discourseComputed("router.currentRoute.queryParams")
   shouldShow(params) {
     if (!this.siteSettings.docs_enabled) return false;
-    if (this?.includedCategories?.length > 0 || this?.includedTags?.length > 0) {
-      return true;
-    } else {
-      return false;
+    return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
     }
   },
 
