@@ -37,7 +37,7 @@ export default Component.extend({
         }
 
         return (
-          pluginCategories.indexOf(`${category.id}`) !== -1 &&
+          pluginCategories.includes(`${category.id}`) &&
           currentCategory !== category.id
         );
       });
