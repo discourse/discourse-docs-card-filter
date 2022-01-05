@@ -14,10 +14,7 @@ export default Component.extend({
   @discourseComputed("router.currentRoute.queryParams")
   shouldShow(params) {
     if (!this.siteSettings.docs_enabled) return false;
-    if (this?.includedCategories?.length > 0 || this?.includedTags?.length > 0) {
-      return true;
-    } else {
-      return false;
+    return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
     }
   },
 
@@ -37,7 +34,7 @@ export default Component.extend({
         }
 
         return (
-          pluginCategories.indexOf(`${category.id}`) !== -1 &&
+          pluginCategories.includes(`${category.id}`) &&
           currentCategory !== category.id
         );
       });
@@ -60,7 +57,7 @@ export default Component.extend({
         }
 
         return (
-          pluginTags.indexOf(`${tag.id}`) !== -1 &&
+          pluginTags.includes(`${tag.id}`) &&
           !currentTags.includes(tag.id)
         );
       });
