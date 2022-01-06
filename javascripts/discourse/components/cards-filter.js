@@ -15,17 +15,16 @@ export default Component.extend({
   shouldShow(params) {
     if (!this.siteSettings.docs_enabled) return false;
     return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
-    }
   },
 
   @discourseComputed("categories", "router.currentRoute.queryParams")
   includedCategories(categories, params) {
     let pluginCategories = this.siteSettings.docs_categories.split("|");
 
-    let includedCategories;
+    let shownCategories;
 
     if (categories) {
-      includedCategories = categories.filter(category => {
+      shownCategories = categories.filter(category => {
         let currentCategory;
 
         if (params?.category) {
@@ -39,17 +38,17 @@ export default Component.extend({
         );
       });
     }
-    return includedCategories;
+    return shownCategories;
   },
 
   @discourseComputed("tags", "router.currentRoute.queryParams")
   includedTags(tags, params) {
     let pluginTags = this.siteSettings.docs_tags.split("|");
 
-    let includedTags;
+    let shownTags;
 
     if (tags) {
-      includedTags = tags.filter(tag => {
+      shownTags = tags.filter(tag => {
         let currentTags = [];
 
         if (params?.tags) {
@@ -63,7 +62,7 @@ export default Component.extend({
       });
     }
 
-    return includedTags;
+    return shownTags;
   },
 
   @discourseComputed()
