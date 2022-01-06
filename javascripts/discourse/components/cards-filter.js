@@ -15,7 +15,6 @@ export default Component.extend({
   shouldShow(params) {
     if (!this.siteSettings.docs_enabled) return false;
     return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
-    }
   },
 
   @discourseComputed("categories", "router.currentRoute.queryParams")
