@@ -37,7 +37,7 @@
     );
     display: block;
     position: absolute;
-    z-index: z("header");
+    z-index: z("header") - 1;
     top: 0;
   }
   &::after {
