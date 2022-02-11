@@ -18,34 +18,8 @@ export default Component.extend({
       queryParams: {
         category: this.customQuery.category,
         tags: this.customQuery.tags,
-        // order: this.order,
-        // ascending: this.ascending,
       },
     });
-  },
-
-  @discourseComputed(/*"tagOrders", "tag.id"*/)
-  order(/*orders, id*/) {
-    /*if (orders[id] && orders[id].split("-").length > 0) {
-      if (
-        this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())
-      ) {
-        return orders[id].split("-")[0].trim().toLowerCase();
-      }
-    }*/
-
-    return null;
-  },
-
-  @discourseComputed(/*"tagOrders", "tag.id"*/)
-  ascending(/*orders, id*/) {
-    /*if (orders[id] && orders[id].split("-").length > 1) {
-      if (orders[id].split("-")[1].trim().toLowerCase().startsWith("a")) {
-        return true;
-      }
-    }*/
-
-    return false;
   },
 
   @discourseComputed("tagIcons", "tag.id")
@@ -58,23 +32,13 @@ export default Component.extend({
     return this.customQuery.name;
   },
 
-  @discourseComputed("tag")
-  hasTopics(tag) {
-    return tag.count >= 1;
+  @discourseComputed()
+  hasDescription() {
+    return this.customQuery.description ? true : false;
   },
 
-  @discourseComputed("router")
-  topicCount(thisRouter) {
-    if (!thisRouter) return
-
-    const docsIndexUrl = thisRouter.urlFor("docs.index")
-    console.log(docsIndexUrl)
-
-    const count = 0
-    if (count > 1) {
-      return `${count} ${I18n.t(themePrefix("topics"))}`;
-    } else {
-      return `${count} ${I18n.t(themePrefix("topic"))}`;
-    }
+  @discourseComputed()
+  customQueryDescription() {
+    return this.customQuery.description;
   },
 });

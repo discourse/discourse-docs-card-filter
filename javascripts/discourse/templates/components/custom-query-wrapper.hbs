@@ -8,5 +8,7 @@
     <h3 class="docs-card-box-header-title">{{customQueryTitle}}</h3>
   </div>
 
-  <span class="docs-card-box-count">{{topicCount}}</span>
+  {{#if hasDescription}}
+    <p class="docs-card-box-description">{{html-safe categoryDescription}}</p>
+  {{/if}}
 </a>
