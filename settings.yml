@@ -10,3 +10,6 @@ tag_icons:
   type: string
   default: "featured,heart|videos,times"
   description: "Choose icons & topics order for corresponding tag slugs. ex. 'featured,heart,activity-desc' would assign the heart icon to featured tag & will order topic list by ascending activity. NOTE: order can be (title,activity)-(asc/desc)"
+custom_queries:
+  type: list
+  description: "Create custom queries to render cards for them"
