@@ -12,4 +12,5 @@ tag_icons:
   description: "Choose icons & topics order for corresponding tag slugs. ex. 'featured,heart,activity-desc' would assign the heart icon to featured tag & will order topic list by ascending activity. NOTE: order can be (title,activity)-(asc/desc)"
 custom_queries:
   type: list
+  default: "category=1&tags=sourcecred%7Cpolls"
   description: "Create custom queries to render cards for them"
