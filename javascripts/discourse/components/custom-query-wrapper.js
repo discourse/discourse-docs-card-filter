@@ -14,6 +14,7 @@ export default Component.extend({
 
   @action
   selectCustomQuery() {
+    console.log(this.getCustomQuery)
     this.get("router").transitionTo("docs.index", {
       queryParams: {
         category: this.getCustomQuery.category,
