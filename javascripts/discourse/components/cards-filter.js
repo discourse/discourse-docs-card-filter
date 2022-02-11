@@ -77,6 +77,7 @@ export default Component.extend({
         if (formattedCustomQ.category) entry.category = formattedCustomQ.category
         if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags
         if (formattedCustomQ.name) entry.name = formattedCustomQ.name
+        if (formattedCustomQ.description) entry.description = formattedCustomQ.description
 
         customQArray.push(entry)
       } catch (err) {
