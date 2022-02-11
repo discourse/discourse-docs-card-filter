@@ -64,7 +64,7 @@ export default Component.extend({
     return tag.count >= 1;
   },
 
-  @discourseComputed("topics")
+  @discourseComputed("topic")
   topicCount(count) {
     console.log(count)
     if (count > 1) {
