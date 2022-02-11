@@ -86,7 +86,7 @@ export default Component.extend({
         console.log(err.message)
       }
     });
-
+    console.log(customQArray)
     return customQArray
   },
 
