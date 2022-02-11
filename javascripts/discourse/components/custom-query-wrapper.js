@@ -16,8 +16,8 @@ export default Component.extend({
   selectCustomQuery() {
     this.get("router").transitionTo("docs.index", {
       queryParams: {
-        category: this.customQ.category,
-        tags: this.customQ.tags,
+        category: this.getCustomQuery.category,
+        tags: this.getCustomQuery.tags,
         // order: this.order,
         // ascending: this.ascending,
       },
