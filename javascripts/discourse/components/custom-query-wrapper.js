@@ -12,16 +12,21 @@ export default Component.extend({
     this._super(...arguments);
   },
 
-  @action("includedCustomQueries")
-  selectCustomQuery(customQ) {
+  @action
+  selectCustomQuery() {
     this.get("router").transitionTo("docs.index", {
       queryParams: {
-        category: customQ.category,
-        tags: customQ.tags,
+        category: this.customQ.category,
+        tags: this.customQ.tags,
         // order: this.order,
         // ascending: this.ascending,
       },
     });
+  },
+
+  @discourseComputed("includedCustomQueries")
+  getCustomQuery(customQ) {
+    return customQ
   },
 
   @discourseComputed(/*"tagOrders", "tag.id"*/)
