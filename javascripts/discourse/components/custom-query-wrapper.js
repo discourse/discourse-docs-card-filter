@@ -36,13 +36,13 @@ export default Component.extend({
     return null;
   },
 
-  @discourseComputed("tagOrders", "tag.id")
-  ascending(orders, id) {
-    if (orders[id] && orders[id].split("-").length > 1) {
+  @discourseComputed(/*"tagOrders", "tag.id"*/)
+  ascending(/*orders, id*/) {
+    /*if (orders[id] && orders[id].split("-").length > 1) {
       if (orders[id].split("-")[1].trim().toLowerCase().startsWith("a")) {
         return true;
       }
-    }
+    }*/
 
     return false;
   },
