@@ -17,8 +17,8 @@ export default Component.extend({
     this.get("router").transitionTo("docs.index", {
       queryParams: {
         category: settings.custom_queries,
-        order: this.order,
-        ascending: this.ascending,
+        // order: this.order,
+        // ascending: this.ascending,
       },
     });
   },
