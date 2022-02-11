@@ -14,7 +14,6 @@ export default Component.extend({
 
   @action
   selectCustomQuery() {
-    console.log(this)
     this.get("router").transitionTo("docs.index", {
       queryParams: {
         category: this.customQuery.category,
@@ -64,12 +63,9 @@ export default Component.extend({
     return tag.count >= 1;
   },
 
-  @discourseComputed()
-  topicCount() {
-    const thisRouter = this.get("router")
-    console.log(thisRouter)
-
-    const count = 0
+  @discourseComputed("router.currentRoute")
+  topicCount(count) {
+    console.log(count)
     if (count > 1) {
       return `${count} ${I18n.t(themePrefix("topics"))}`;
     } else {
