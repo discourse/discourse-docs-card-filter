@@ -72,9 +72,6 @@ export default Component.extend({
     settings.custom_queries.split("|").forEach(customQ => {
       try {
         let entry = {}
-
-        console.log(customQ)
-        console.log(typeof customQ)
         const formattedCustomQ = JSON.parse(customQ)
 
         if (formattedCustomQ.category) entry.category = formattedCustomQ.category
@@ -86,7 +83,6 @@ export default Component.extend({
         console.log(err.message)
       }
     });
-    console.log(customQArray)
     return customQArray
   },
 
