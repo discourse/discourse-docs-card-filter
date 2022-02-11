@@ -64,8 +64,9 @@ export default Component.extend({
     return tag.count >= 1;
   },
 
-  @discourseComputed("tag.count")
+  @discourseComputed("router.currentRoute.queryParams.count")
   topicCount(count) {
+    console.log(count)
     if (count > 1) {
       return `${count} ${I18n.t(themePrefix("topics"))}`;
     } else {
