@@ -44,6 +44,7 @@ export default Component.extend({
   @discourseComputed("tags", "router.currentRoute.queryParams")
   includedTags(tags, params) {
     let pluginTags = this.siteSettings.docs_tags.split("|");
+    console.log(pluginTags)
 
     let shownTags;
 
@@ -79,10 +80,11 @@ export default Component.extend({
 
         if (formattedCustomQ.category) entry.category = formattedCustomQ.category
         if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags
+        if (formattedCustomQ.name) entry.name = formattedCustomQ.name
 
         customQArray.push(entry)
       } catch (err) {
-        console.log(err)
+        console.log(err.message)
       }
     });
 
