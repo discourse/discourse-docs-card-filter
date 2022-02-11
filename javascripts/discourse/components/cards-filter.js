@@ -70,16 +70,20 @@ export default Component.extend({
     let customQArray = [];
 
     settings.custom_queries.split("|").forEach(customQ => {
-      let entry = {}
+      try {
+        let entry = {}
 
-      console.log(customQ)
-      console.log(typeof customQ)
-      const formattedCustomQ = JSON.parse(customQ)
+        console.log(customQ)
+        console.log(typeof customQ)
+        const formattedCustomQ = JSON.parse(customQ)
 
-      if (formattedCustomQ.category) entry.category = formattedCustomQ.category
-      if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags
+        if (formattedCustomQ.category) entry.category = formattedCustomQ.category
+        if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags
 
-      customQArray.push(entry)
+        customQArray.push(entry)
+      } catch (err) {
+        console.log(err)
+      }
     });
 
     return customQArray
