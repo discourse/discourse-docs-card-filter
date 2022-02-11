@@ -69,9 +69,7 @@ export default Component.extend({
   includedCustomQueries() {
     let customQArray = [];
 
-    console.log(settings.custom_queries)
-
-    settings.custom_queries.forEach(customQ => {
+    settings.custom_queries.split("|").forEach(customQ => {
       let entry = {}
       const formattedCustomQ = JSON.parse(customQ)
 
