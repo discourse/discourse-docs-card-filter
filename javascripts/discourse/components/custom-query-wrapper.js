@@ -54,9 +54,9 @@ export default Component.extend({
     return tagIcons[id];
   },
 
-  @discourseComputed("tag.id")
-  tagTitle(tagTitle) {
-    return tagTitle;
+  @discourseComputed()
+  customQueryTitle() {
+    return this.customQuery.name;
   },
 
   @discourseComputed("tag")
