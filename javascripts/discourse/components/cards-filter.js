@@ -14,7 +14,7 @@ export default Component.extend({
   @discourseComputed("router.currentRoute.queryParams")
   shouldShow(params) {
     if (!this.siteSettings.docs_enabled) return false;
-    return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
+    return this.includedCategories?.length > 0 || this.includedTags?.length > 0 || this.includedCustomQueries?.length > 0;
   },
 
   @discourseComputed("categories", "router.currentRoute.queryParams")
@@ -63,6 +63,23 @@ export default Component.extend({
     }
 
     return shownTags;
+  },
+
+  @discourseComputed()
+  includedCustomQueries() {
+    let customQArray = [];
+
+    settings.custom_queries.forEach(customQ => {
+      let entry = {}
+      const formattedCustomQ = JSON.parse(customQ)
+
+      if (formattedCustomQ.category) entry.category = formattedCustomQ.category
+      if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags
+
+      customQArray.push(entry)
+    });
+
+    return customQArray
   },
 
   @discourseComputed()

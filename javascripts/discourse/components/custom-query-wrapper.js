@@ -13,10 +13,10 @@ export default Component.extend({
   },
 
   @action
-  selectTag() {
+  selectCustomQuery() {
     this.get("router").transitionTo("docs.index", {
       queryParams: {
-        tags: this.tag.id,
+        category: settings.custom_queries,
         order: this.order,
         ascending: this.ascending,
       },
