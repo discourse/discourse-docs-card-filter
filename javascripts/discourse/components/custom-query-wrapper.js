@@ -65,8 +65,9 @@ export default Component.extend({
 
   @discourseComputed()
   topicCount() {
-    const allTopics = this.get("router")//.currentRoute?.attributes.topics.topic_list.topics
-    console.log(allTopics)
+    const thisRouter = this.get("router")//.currentRoute?.attributes.topics.topic_list.topics
+    const currentRoute = thisRouter.currentRoute
+    console.log(currentRoute)
 
     const count = 0
     if (count > 1) {
