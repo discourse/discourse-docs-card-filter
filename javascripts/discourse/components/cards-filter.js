@@ -71,6 +71,9 @@ export default Component.extend({
 
     settings.custom_queries.split("|").forEach(customQ => {
       let entry = {}
+
+      console.log(customQ)
+      console.log(typeof customQ)
       const formattedCustomQ = JSON.parse(customQ)
 
       if (formattedCustomQ.category) entry.category = formattedCustomQ.category
