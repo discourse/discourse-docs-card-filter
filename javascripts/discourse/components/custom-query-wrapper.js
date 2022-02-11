@@ -12,11 +12,12 @@ export default Component.extend({
     this._super(...arguments);
   },
 
-  @action
-  selectCustomQuery() {
+  @action("includedCustomQueries")
+  selectCustomQuery(customQ) {
     this.get("router").transitionTo("docs.index", {
       queryParams: {
-        category: settings.custom_queries,
+        category: customQ.category,
+        tags: customQ.tags,
         // order: this.order,
         // ascending: this.ascending,
       },
