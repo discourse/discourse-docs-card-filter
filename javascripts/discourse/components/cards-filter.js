@@ -44,7 +44,6 @@ export default Component.extend({
   @discourseComputed("tags", "router.currentRoute.queryParams")
   includedTags(tags, params) {
     let pluginTags = this.siteSettings.docs_tags.split("|");
-    console.log(pluginTags)
 
     let shownTags;
 

@@ -23,15 +23,15 @@ export default Component.extend({
     });
   },
 
-  @discourseComputed("tagOrders", "tag.id")
-  order(orders, id) {
-    if (orders[id] && orders[id].split("-").length > 0) {
+  @discourseComputed(/*"tagOrders", "tag.id"*/)
+  order(/*orders, id*/) {
+    /*if (orders[id] && orders[id].split("-").length > 0) {
       if (
         this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())
       ) {
         return orders[id].split("-")[0].trim().toLowerCase();
       }
-    }
+    }*/
 
     return null;
   },
