@@ -67,7 +67,7 @@ export default Component.extend({
   topicCount(thisRouter) {
     if (!thisRouter) return
 
-    docsIndexUrl = thisRouter.urlFor("docs.index")
+    const docsIndexUrl = thisRouter.urlFor("docs.index")
     console.log(docsIndexUrl)
 
     const count = 0
