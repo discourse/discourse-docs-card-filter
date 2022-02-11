@@ -63,9 +63,12 @@ export default Component.extend({
     return tag.count >= 1;
   },
 
-  @discourseComputed("router.get('docs.index')")
-  topicCount(count) {
-    console.log(count)
+  @discourseComputed()
+  topicCount() {
+    const thisRouter = this.get("router")
+    console.log(thisRouter)
+
+    const count = 0
     if (count > 1) {
       return `${count} ${I18n.t(themePrefix("topics"))}`;
     } else {
