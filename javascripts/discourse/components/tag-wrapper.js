@@ -14,6 +14,7 @@ export default Component.extend({
 
   @action
   selectTag() {
+    console.log(this)
     this.get("router").transitionTo("docs.index", {
       queryParams: {
         tags: this.tag.id,
