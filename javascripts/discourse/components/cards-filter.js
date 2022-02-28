@@ -81,7 +81,7 @@ export default Component.extend({
 
         customQArray.push(entry)
       } catch (err) {
-        console.log(err.message)
+        return
       }
     });
     return customQArray
