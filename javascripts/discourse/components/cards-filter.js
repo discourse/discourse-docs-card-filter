@@ -75,7 +75,7 @@ export default Component.extend({
         const formattedCustomQ = JSON.parse(customQ)
 
         if (formattedCustomQ.category) entry.category = formattedCustomQ.category
-        if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags
+        if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags.join('|')
         if (formattedCustomQ.name) entry.name = formattedCustomQ.name
         if (formattedCustomQ.description) entry.description = formattedCustomQ.description
 
