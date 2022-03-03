@@ -54,7 +54,7 @@ export default Component.extend({
 
   @discourseComputed("tag.id")
   tagTitle(tagTitle) {
-    return tagTitle;
+    return tagTitle.replaceAll("-", " ");
   },
 
   @discourseComputed("tag")

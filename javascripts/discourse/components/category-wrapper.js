@@ -62,6 +62,11 @@ export default Component.extend({
   categoryName(categoryName) {
     return categoryName;
   },
+  
+  @discourseComputed("categoryInfo.slug")
+  categorySlug(categorySlug) {
+    return categorySlug;
+  },
 
   @discourseComputed("categoryInfo.description")
   hasDescription(description) {
