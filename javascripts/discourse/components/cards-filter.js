@@ -78,6 +78,7 @@ export default Component.extend({
         if (formattedCustomQ.tags) entry.tags = formattedCustomQ.tags.join('|')
         if (formattedCustomQ.name) entry.name = formattedCustomQ.name
         if (formattedCustomQ.description) entry.description = formattedCustomQ.description
+        if (formattedCustomQ.time) entry.time = formattedCustomQ.time
 
         customQArray.push(entry)
       } catch (err) {

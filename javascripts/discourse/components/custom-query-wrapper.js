@@ -18,6 +18,7 @@ export default Component.extend({
       queryParams: {
         category: this.customQuery.category,
         tags: this.customQuery.tags,
+        time: this.customQuery.time,
       },
     });
   },
