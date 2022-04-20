@@ -1,8 +1,9 @@
-<div class="docs-cards-filter categories-filter tag-filter">
   {{#if includedCustomQueries}}
+    <h3>Custom Filters</h3>
+    <div class="docs-cards-filter categories-filter tag-filter">
     {{#each includedCustomQueries as |customQuery|}}
       {{custom-query-wrapper customQuery=customQuery customQueryOrders=customQueryOrders customQueryIcon=customQueryIcon updateSelectedCustomQuery=updateSelectedCustomQuery}}
     {{/each}}
+    </div>
   {{/if}}
-</div>
 

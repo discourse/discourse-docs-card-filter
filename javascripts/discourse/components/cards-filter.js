@@ -79,6 +79,8 @@ export default Component.extend({
         if (formattedCustomQ.name) entry.name = formattedCustomQ.name
         if (formattedCustomQ.description) entry.description = formattedCustomQ.description
         if (formattedCustomQ.time) entry.time = formattedCustomQ.time
+        if (formattedCustomQ.groups) entry.groups = formattedCustomQ.groups
+        entry.selected = false
 
         customQArray.push(entry)
       } catch (err) {

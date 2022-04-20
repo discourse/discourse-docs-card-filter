@@ -1,14 +1,4 @@
-<a class="docs-card-box" onclick={{selectCustomQuery}}>
-  <div class="docs-card-box-header">
-    {{#if customQueryIcon}}
-      {{d-icon customQueryIcon}}
-    {{else}}
-      {{d-icon "link" class="card-tag-icon"}}
-    {{/if}}
-    <h3 class="docs-card-box-header-title">{{customQueryTitle}}</h3>
-  </div>
-
-  {{#if hasDescription}}
-    <p class="docs-card-box-description">{{html-safe customQueryDescription}}</p>
-  {{/if}}
+<a onClick={{selectCustomQuery}} class="docs-card-box {{if isCustomQuerySelected "selected"}}">
+  <span class="docs-card-box-header-title">{{customQueryTitle}}</span>
+  <p class="docs-card-box-description">{{html-safe customQueryDescription}}</p>
 </a>
