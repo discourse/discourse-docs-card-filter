@@ -1,9 +1,16 @@
-<a class="docs-card-box category-card card-{{categorySlug}}" onclick={{selectCategory}}>
+<a
+  {{on "click" this.selectCategory}}
+  href
+  class="docs-card-box category-card card-{{categorySlug}}"
+>
   <div class="docs-card-box-header">
     {{#if categoryIcon}}
       {{d-icon categoryIcon}}
     {{else}}
-      <span class="docs-card-box-header-badge-category-bg" style="background-color: {{categoryColor}}"></span>
+      <span
+        class="docs-card-box-header-badge-category-bg"
+        style={{html-safe (concat "background-color: " this.categoryColor)}}
+      ></span>
     {{/if}}
     <h3 class="docs-card-box-header-title">{{categoryName}}</h3>
   </div>

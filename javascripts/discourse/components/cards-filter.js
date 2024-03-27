@@ -1,8 +1,6 @@
 import Component from "@ember/component";
-import { withPluginApi } from "discourse/lib/plugin-api";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
-import { readOnly } from "@ember/object/computed";
 
 export default Component.extend({
   classNameBindings: ["shouldShow:visible"],
@@ -12,8 +10,10 @@ export default Component.extend({
   },
 
   @discourseComputed("router.currentRoute.queryParams")
-  shouldShow(params) {
-    if (!this.siteSettings.docs_enabled) return false;
+  shouldShow() {
+    if (!this.siteSettings.docs_enabled) {
+      return false;
+    }
     return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
   },
 
@@ -24,7 +24,7 @@ export default Component.extend({
     let shownCategories;
 
     if (categories) {
-      shownCategories = categories.filter(category => {
+      shownCategories = categories.filter((category) => {
         let currentCategory;
 
         if (params?.category) {
@@ -48,7 +48,7 @@ export default Component.extend({
     let shownTags;
 
     if (tags) {
-      shownTags = tags.filter(tag => {
+      shownTags = tags.filter((tag) => {
         let currentTags = [];
 
         if (params?.tags) {
@@ -56,8 +56,7 @@ export default Component.extend({
         }
 
         return (
-          pluginTags.includes(`${tag.id}`) &&
-          !currentTags.includes(tag.id)
+          pluginTags.includes(`${tag.id}`) && !currentTags.includes(tag.id)
         );
       });
     }
@@ -69,7 +68,7 @@ export default Component.extend({
   tagIcons() {
     let icons = {};
 
-    settings.tag_icons.split("|").forEach(data => {
+    settings.tag_icons.split("|").forEach((data) => {
       icons[data.split(",")[0]] = data.split(",")[1];
     });
 
@@ -80,7 +79,7 @@ export default Component.extend({
   tagOrders() {
     let order = {};
 
-    settings.tag_icons.split("|").forEach(data => {
+    settings.tag_icons.split("|").forEach((data) => {
       const arrayData = data.split(",");
       if (arrayData.length === 3) {
         order[arrayData[0]] = arrayData[2];
@@ -94,7 +93,7 @@ export default Component.extend({
   categoryOrders() {
     let order = {};
 
-    settings.category_icons.split("|").forEach(data => {
+    settings.category_icons.split("|").forEach((data) => {
       const arrayData = data.split(",");
       if (arrayData.length === 3) {
         order[arrayData[0]] = arrayData[2];
@@ -108,10 +107,10 @@ export default Component.extend({
   categoryIcons() {
     let icons = {};
 
-    settings.category_icons.split("|").forEach(data => {
+    settings.category_icons.split("|").forEach((data) => {
       icons[data.split(",")[0]] = data.split(",")[1];
     });
 
     return icons;
-  }
+  },
 });

@@ -1,4 +1,8 @@
-<a class="docs-card-box tag-card card-{{tag.id}}" onclick={{selectTag}}>
+<a
+  {{on "click" this.selectTag}}
+  href
+  class="docs-card-box tag-card card-{{tag.id}}"
+>
   <div class="docs-card-box-header">
     {{#if tagIcon}}
       {{d-icon tagIcon}}
