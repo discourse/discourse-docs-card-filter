@@ -29,7 +29,7 @@
   scrollbar-color: var(--primary-low) transparent;
 
   &::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 2em;
     background: linear-gradient(
@@ -44,7 +44,7 @@
   }
 
   &::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 2em;
     background: linear-gradient(
