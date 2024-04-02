@@ -1,10 +1,6 @@
 <LinkTo
   @route="docs.index"
-  @query={{hash
-    tags=this.category.id
-    order=this.order
-    ascending=this.ascending
-  }}
+  @query={{hash tags=this.tag.id order=this.order ascending=this.ascending}}
   class="docs-card-box tag-card card-{{tag.id}}"
 >
   <div class="docs-card-box-header">
