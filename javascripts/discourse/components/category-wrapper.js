@@ -1,5 +1,4 @@
 import Component from "@ember/component";
-import { action } from "@ember/object";
 import { service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
 import I18n from "I18n";
@@ -8,21 +7,6 @@ export default Component.extend({
   router: service(),
   tagName: "",
   listOrder: ["title", "activity"],
-
-  init() {
-    this._super(...arguments);
-  },
-
-  @action
-  selectCategory() {
-    this.get("router").transitionTo("docs.index", {
-      queryParams: {
-        category: this.category.id,
-        order: this.order,
-        ascending: this.ascending,
-      },
-    });
-  },
 
   @discourseComputed("category")
   categoryInfo(category) {
