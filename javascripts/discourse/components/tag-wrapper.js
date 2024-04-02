@@ -1,5 +1,4 @@
 import Component from "@ember/component";
-import { action } from "@ember/object";
 import { service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
 import I18n from "I18n";
@@ -7,21 +6,6 @@ import I18n from "I18n";
 export default Component.extend({
   router: service(),
   tagName: "",
-
-  init() {
-    this._super(...arguments);
-  },
-
-  @action
-  selectTag() {
-    this.get("router").transitionTo("docs.index", {
-      queryParams: {
-        tags: this.tag.id,
-        order: this.order,
-        ascending: this.ascending,
-      },
-    });
-  },
 
   @discourseComputed("tagOrders", "tag.id")
   order(orders, id) {

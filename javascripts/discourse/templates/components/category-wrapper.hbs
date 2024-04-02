@@ -1,6 +1,10 @@
-<a
-  {{on "click" this.selectCategory}}
-  href
+<LinkTo
+  @route="docs.index"
+  @query={{hash
+    category=this.category.id
+    order=this.order
+    ascending=this.ascending
+  }}
   class="docs-card-box category-card card-{{categorySlug}}"
 >
   <div class="docs-card-box-header">
@@ -20,4 +24,4 @@
   {{/if}}
 
   <span class="docs-card-box-count">{{topicCount}}</span>
-</a>
+</LinkTo>
