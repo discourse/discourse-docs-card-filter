@@ -1,6 +1,6 @@
 {
-  "name": "Discourse Docs Card Filter",
+  "name": "Docs Card Filter",
   "component": true,
-  "about_url": null,
+  "about_url": "https://meta.discourse.org/t/discourse-docs-card-filter/187947",
   "license_url": null
 }
