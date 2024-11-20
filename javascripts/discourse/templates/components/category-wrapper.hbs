@@ -5,23 +5,25 @@
     order=this.order
     ascending=this.ascending
   }}
-  class="docs-card-box category-card card-{{categorySlug}}"
+  class="docs-card-box category-card card-{{this.categorySlug}}"
 >
   <div class="docs-card-box-header">
-    {{#if categoryIcon}}
-      {{d-icon categoryIcon}}
+    {{#if this.categoryIcon}}
+      {{d-icon this.categoryIcon}}
     {{else}}
       <span
         class="docs-card-box-header-badge-category-bg"
         style={{html-safe (concat "background-color: " this.categoryColor)}}
       ></span>
     {{/if}}
-    <h3 class="docs-card-box-header-title">{{categoryName}}</h3>
+    <h3 class="docs-card-box-header-title">{{this.categoryName}}</h3>
   </div>
 
-  {{#if hasDescription}}
-    <p class="docs-card-box-description">{{html-safe categoryDescription}}</p>
+  {{#if this.hasDescription}}
+    <p class="docs-card-box-description">{{html-safe
+        this.categoryDescription
+      }}</p>
   {{/if}}
 
-  <span class="docs-card-box-count">{{topicCount}}</span>
+  <span class="docs-card-box-count">{{this.topicCount}}</span>
 </LinkTo>
