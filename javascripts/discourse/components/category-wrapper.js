@@ -1,22 +1,24 @@
 import Component from "@ember/component";
 import { service } from "@ember/service";
+import { tagName } from "@ember-decorators/component";
 import discourseComputed from "discourse-common/utils/decorators";
 import I18n from "I18n";
 
-export default Component.extend({
-  router: service(),
-  tagName: "",
-  listOrder: ["title", "activity"],
+@tagName("")
+export default class CategoryWrapper extends Component {
+  @service router;
+
+  listOrder = ["title", "activity"];
 
   @discourseComputed("category")
   categoryInfo(category) {
     return this.site.categories.findBy("id", category.id);
-  },
+  }
 
   @discourseComputed("categoryIcons", "categoryInfo.id")
   categoryIcon(icons, id) {
     return icons[id];
-  },
+  }
 
   @discourseComputed("categoryOrders", "categoryInfo.id")
   order(orders, id) {
@@ -29,7 +31,7 @@ export default Component.extend({
     }
 
     return null;
-  },
+  }
 
   @discourseComputed("categoryOrders", "categoryInfo.id")
   ascending(orders, id) {
@@ -40,37 +42,37 @@ export default Component.extend({
     }
 
     return false;
-  },
+  }
 
   @discourseComputed("categoryInfo.name")
   categoryName(categoryName) {
     return categoryName;
-  },
+  }
 
   @discourseComputed("categoryInfo.slug")
   categorySlug(categorySlug) {
     return categorySlug;
-  },
+  }
 
   @discourseComputed("categoryInfo.description")
   hasDescription(description) {
     return description && settings.category_description;
-  },
+  }
 
   @discourseComputed("categoryInfo.description")
   categoryDescription(description) {
     return description;
-  },
+  }
 
   @discourseComputed("categoryInfo.color")
   categoryColor(color) {
     return `#${color}`;
-  },
+  }
 
   @discourseComputed("categoryInfo.topic_count")
   hasTopics(count) {
     return count >= 1;
-  },
+  }
 
   @discourseComputed("categoryInfo.topic_count")
   topicCount(count) {
@@ -79,5 +81,5 @@ export default Component.extend({
     } else {
       return `${count} ${I18n.t(themePrefix("topic"))}`;
     }
-  },
-});
+  }
+}
