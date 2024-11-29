@@ -1,11 +1,12 @@
 import Component from "@ember/component";
 import { service } from "@ember/service";
+import { tagName } from "@ember-decorators/component";
 import discourseComputed from "discourse-common/utils/decorators";
 import I18n from "I18n";
 
-export default Component.extend({
-  router: service(),
-  tagName: "",
+@tagName("")
+export default class TagWrapper extends Component {
+  @service router;
 
   @discourseComputed("tagOrders", "tag.id")
   order(orders, id) {
@@ -18,7 +19,7 @@ export default Component.extend({
     }
 
     return null;
-  },
+  }
 
   @discourseComputed("tagOrders", "tag.id")
   ascending(orders, id) {
@@ -29,22 +30,22 @@ export default Component.extend({
     }
 
     return false;
-  },
+  }
 
   @discourseComputed("tagIcons", "tag.id")
   tagIcon(tagIcons, id) {
     return tagIcons[id];
-  },
+  }
 
   @discourseComputed("tag.id")
   tagTitle(tagTitle) {
     return tagTitle.replaceAll("-", " ");
-  },
+  }
 
   @discourseComputed("tag")
   hasTopics(tag) {
     return tag.count >= 1;
-  },
+  }
 
   @discourseComputed("tag.count")
   topicCount(count) {
@@ -53,5 +54,5 @@ export default Component.extend({
     } else {
       return `${count} ${I18n.t(themePrefix("topic"))}`;
     }
-  },
-});
+  }
+}

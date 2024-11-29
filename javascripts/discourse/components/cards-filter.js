@@ -1,13 +1,11 @@
 import Component from "@ember/component";
 import { service } from "@ember/service";
+import { classNameBindings } from "@ember-decorators/component";
 import discourseComputed from "discourse-common/utils/decorators";
 
-export default Component.extend({
-  classNameBindings: ["shouldShow:visible"],
-  router: service(),
-  init() {
-    this._super(...arguments);
-  },
+@classNameBindings("shouldShow:visible")
+export default class CardsFilter extends Component {
+  @service router;
 
   @discourseComputed("router.currentRoute.queryParams")
   shouldShow() {
@@ -15,7 +13,7 @@ export default Component.extend({
       return false;
     }
     return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
-  },
+  }
 
   @discourseComputed("categories", "router.currentRoute.queryParams")
   includedCategories(categories, params) {
@@ -39,7 +37,7 @@ export default Component.extend({
       });
     }
     return shownCategories;
-  },
+  }
 
   @discourseComputed("tags", "router.currentRoute.queryParams")
   includedTags(tags, params) {
@@ -62,7 +60,7 @@ export default Component.extend({
     }
 
     return shownTags;
-  },
+  }
 
   @discourseComputed()
   tagIcons() {
@@ -73,7 +71,7 @@ export default Component.extend({
     });
 
     return icons;
-  },
+  }
 
   @discourseComputed()
   tagOrders() {
@@ -87,7 +85,7 @@ export default Component.extend({
     });
 
     return order;
-  },
+  }
 
   @discourseComputed()
   categoryOrders() {
@@ -101,7 +99,7 @@ export default Component.extend({
     });
 
     return order;
-  },
+  }
 
   @discourseComputed()
   categoryIcons() {
@@ -112,5 +110,5 @@ export default Component.extend({
     });
 
     return icons;
-  },
-});
+  }
+}
