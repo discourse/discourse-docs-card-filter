@@ -1,8 +1,8 @@
 import Component from "@ember/component";
 import { service } from "@ember/service";
 import { tagName } from "@ember-decorators/component";
-import discourseComputed from "discourse-common/utils/decorators";
-import I18n from "I18n";
+import discourseComputed from "discourse/lib/decorators";
+import { i18n } from "discourse-i18n";
 
 @tagName("")
 export default class TagWrapper extends Component {
@@ -50,9 +50,9 @@ export default class TagWrapper extends Component {
   @discourseComputed("tag.count")
   topicCount(count) {
     if (count > 1) {
-      return `${count} ${I18n.t(themePrefix("topics"))}`;
+      return `${count} ${i18n(themePrefix("topics"))}`;
     } else {
-      return `${count} ${I18n.t(themePrefix("topic"))}`;
+      return `${count} ${i18n(themePrefix("topic"))}`;
     }
   }
 }
