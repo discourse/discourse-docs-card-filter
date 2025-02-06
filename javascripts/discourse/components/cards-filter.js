@@ -1,7 +1,7 @@
 import Component from "@ember/component";
 import { service } from "@ember/service";
 import { classNameBindings } from "@ember-decorators/component";
-import discourseComputed from "discourse-common/utils/decorators";
+import discourseComputed from "discourse/lib/decorators";
 
 @classNameBindings("shouldShow:visible")
 export default class CardsFilter extends Component {
