@@ -11,7 +11,7 @@
   transition: all 0.3s ease;
   opacity: 0;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (width <= 700px) {
     grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
   }
 }
@@ -36,7 +36,7 @@
     background: linear-gradient(
       180deg,
       var(--secondary) 20%,
-      rgba(var(--secondary-rgb), 0) 100%
+      rgb(var(--secondary-rgb), 0) 100%
     );
     display: block;
     position: absolute;
@@ -51,7 +51,7 @@
     background: linear-gradient(
       0deg,
       var(--secondary) 20%,
-      rgba(var(--secondary-rgb), 0) 100%
+      rgb(var(--secondary-rgb), 0) 100%
     );
     display: block;
     position: absolute;

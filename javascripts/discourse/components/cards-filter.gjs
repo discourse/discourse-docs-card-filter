@@ -2,6 +2,8 @@ import Component from "@ember/component";
 import { service } from "@ember/service";
 import { classNameBindings } from "@ember-decorators/component";
 import discourseComputed from "discourse/lib/decorators";
+import CategoryWrapper from "./category-wrapper";
+import TagWrapper from "./tag-wrapper";
 
 @classNameBindings("shouldShow:visible")
 export default class CardsFilter extends Component {
@@ -111,4 +113,29 @@ export default class CardsFilter extends Component {
 
     return icons;
   }
+
+  <template>
+    <div class="docs-cards-filter">
+      {{#if this.includedCategories}}
+        {{#each this.includedCategories as |category|}}
+          <CategoryWrapper
+            @category={{category}}
+            @categoryOrders={{this.categoryOrders}}
+            @categoryIcons={{this.categoryIcons}}
+            @updateSelectedCategory={{this.updateSelectedCategory}}
+          />
+        {{/each}}
+      {{/if}}
+      {{#if this.includedTags}}
+        {{#each this.includedTags as |tag|}}
+          <TagWrapper
+            @tag={{tag}}
+            @tagOrders={{this.tagOrders}}
+            @tagIcons={{this.tagIcons}}
+            @updateSelectedTag={{this.updateSelectedTag}}
+          />
+        {{/each}}
+      {{/if}}
+    </div>
+  </template>
 }

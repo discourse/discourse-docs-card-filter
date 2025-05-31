@@ -1,6 +1,10 @@
 import Component from "@ember/component";
+import { concat, hash } from "@ember/helper";
+import { LinkTo } from "@ember/routing";
 import { service } from "@ember/service";
 import { tagName } from "@ember-decorators/component";
+import icon from "discourse/helpers/d-icon";
+import htmlSafe from "discourse/helpers/html-safe";
 import discourseComputed from "discourse/lib/decorators";
 import { i18n } from "discourse-i18n";
 
@@ -82,4 +86,36 @@ export default class CategoryWrapper extends Component {
       return `${count} ${i18n(themePrefix("topic"))}`;
     }
   }
+
+  <template>
+    <LinkTo
+      @route="docs.index"
+      @query={{hash
+        category=this.category.id
+        order=this.order
+        ascending=this.ascending
+      }}
+      class="docs-card-box category-card card-{{this.categorySlug}}"
+    >
+      <div class="docs-card-box-header">
+        {{#if this.categoryIcon}}
+          {{icon this.categoryIcon}}
+        {{else}}
+          <span
+            class="docs-card-box-header-badge-category-bg"
+            style={{htmlSafe (concat "background-color: " this.categoryColor)}}
+          ></span>
+        {{/if}}
+        <h3 class="docs-card-box-header-title">{{this.categoryName}}</h3>
+      </div>
+
+      {{#if this.hasDescription}}
+        <p class="docs-card-box-description">{{htmlSafe
+            this.categoryDescription
+          }}</p>
+      {{/if}}
+
+      <span class="docs-card-box-count">{{this.topicCount}}</span>
+    </LinkTo>
+  </template>
 }
