@@ -1,6 +1,9 @@
 import Component from "@ember/component";
+import { hash } from "@ember/helper";
+import { LinkTo } from "@ember/routing";
 import { service } from "@ember/service";
 import { tagName } from "@ember-decorators/component";
+import icon from "discourse/helpers/d-icon";
 import discourseComputed from "discourse/lib/decorators";
 import { i18n } from "discourse-i18n";
 
@@ -55,4 +58,23 @@ export default class TagWrapper extends Component {
       return `${count} ${i18n(themePrefix("topic"))}`;
     }
   }
+
+  <template>
+    <LinkTo
+      @route="docs.index"
+      @query={{hash tags=this.tag.id order=this.order ascending=this.ascending}}
+      class="docs-card-box tag-card card-{{this.tag.id}}"
+    >
+      <div class="docs-card-box-header">
+        {{#if this.tagIcon}}
+          {{icon this.tagIcon}}
+        {{else}}
+          {{icon "tag" class="card-tag-icon"}}
+        {{/if}}
+        <h3 class="docs-card-box-header-title">{{this.tagTitle}}</h3>
+      </div>
+
+      <span class="docs-card-box-count">{{this.topicCount}}</span>
+    </LinkTo>
+  </template>
 }
