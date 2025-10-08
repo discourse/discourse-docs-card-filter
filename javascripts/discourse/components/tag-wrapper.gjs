@@ -1,7 +1,6 @@
 import Component from "@ember/component";
 import { hash } from "@ember/helper";
 import { LinkTo } from "@ember/routing";
-import { service } from "@ember/service";
 import { tagName } from "@ember-decorators/component";
 import icon from "discourse/helpers/d-icon";
 import discourseComputed from "discourse/lib/decorators";
@@ -9,8 +8,6 @@ import { i18n } from "discourse-i18n";
 
 @tagName("")
 export default class TagWrapper extends Component {
-  @service router;
-
   @discourseComputed("tagOrders", "tag.id")
   order(orders, id) {
     if (orders[id] && orders[id].split("-").length > 0) {
