@@ -1,17 +1,14 @@
 import Component from "@ember/component";
 import { concat, hash } from "@ember/helper";
 import { LinkTo } from "@ember/routing";
-import { service } from "@ember/service";
+import { htmlSafe } from "@ember/template";
 import { tagName } from "@ember-decorators/component";
 import icon from "discourse/helpers/d-icon";
-import htmlSafe from "discourse/helpers/html-safe";
 import discourseComputed from "discourse/lib/decorators";
 import { i18n } from "discourse-i18n";
 
 @tagName("")
 export default class CategoryWrapper extends Component {
-  @service router;
-
   listOrder = ["title", "activity"];
 
   @discourseComputed("category")
