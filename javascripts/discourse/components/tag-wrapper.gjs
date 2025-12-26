@@ -59,7 +59,11 @@ export default class TagWrapper extends Component {
   <template>
     <LinkTo
       @route="docs.index"
-      @query={{hash tags=this.tag.name order=this.order ascending=this.ascending}}
+      @query={{hash
+        tags=this.tag.name
+        order=this.order
+        ascending=this.ascending
+      }}
       class="docs-card-box tag-card card-{{this.tag.name}}"
     >
       <div class="docs-card-box-header">
