@@ -8,23 +8,23 @@ import { i18n } from "discourse-i18n";
 
 @tagName("")
 export default class TagWrapper extends Component {
-  @discourseComputed("tagOrders", "tag.id")
-  order(orders, id) {
-    if (orders[id] && orders[id].split("-").length > 0) {
+  @discourseComputed("tagOrders", "tag.name")
+  order(orders, name) {
+    if (orders[name] && orders[name].split("-").length > 0) {
       if (
-        this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())
+        this.listOrder.includes(orders[name].split("-")[0].trim().toLowerCase())
       ) {
-        return orders[id].split("-")[0].trim().toLowerCase();
+        return orders[name].split("-")[0].trim().toLowerCase();
       }
     }
 
     return null;
   }
 
-  @discourseComputed("tagOrders", "tag.id")
-  ascending(orders, id) {
-    if (orders[id] && orders[id].split("-").length > 1) {
-      if (orders[id].split("-")[1].trim().toLowerCase().startsWith("a")) {
+  @discourseComputed("tagOrders", "tag.name")
+  ascending(orders, name) {
+    if (orders[name] && orders[name].split("-").length > 1) {
+      if (orders[name].split("-")[1].trim().toLowerCase().startsWith("a")) {
         return true;
       }
     }
@@ -32,12 +32,12 @@ export default class TagWrapper extends Component {
     return false;
   }
 
-  @discourseComputed("tagIcons", "tag.id")
-  tagIcon(tagIcons, id) {
-    return tagIcons[id];
+  @discourseComputed("tagIcons", "tag.name")
+  tagIcon(tagIcons, name) {
+    return tagIcons[name];
   }
 
-  @discourseComputed("tag.id")
+  @discourseComputed("tag.name")
   tagTitle(tagTitle) {
     return tagTitle.replaceAll("-", " ");
   }
@@ -59,8 +59,8 @@ export default class TagWrapper extends Component {
   <template>
     <LinkTo
       @route="docs.index"
-      @query={{hash tags=this.tag.id order=this.order ascending=this.ascending}}
-      class="docs-card-box tag-card card-{{this.tag.id}}"
+      @query={{hash tags=this.tag.name order=this.order ascending=this.ascending}}
+      class="docs-card-box tag-card card-{{this.tag.name}}"
     >
       <div class="docs-card-box-header">
         {{#if this.tagIcon}}
