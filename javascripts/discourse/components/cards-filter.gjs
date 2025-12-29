@@ -56,7 +56,7 @@ export default class CardsFilter extends Component {
         }
 
         return (
-          pluginTags.includes(`${tag.id}`) && !currentTags.includes(tag.id)
+          pluginTags.includes(`${tag.name}`) && !currentTags.includes(tag.name)
         );
       });
     }
