@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
   grid-auto-rows: 1fr;
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
+  column-gap: 1em;
+  row-gap: 1em;
   justify-items: center;
   width: 95%;
   max-height: 0;
