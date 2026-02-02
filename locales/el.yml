@@ -5,3 +5,5 @@
 # https://translate.discourse.org/
 
 el:
+  topics: "Θέματα"
+  topic: "Θέμα"
