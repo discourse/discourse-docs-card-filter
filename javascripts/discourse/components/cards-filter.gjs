@@ -1,35 +1,39 @@
+/* eslint-disable ember/no-classic-components, ember/require-tagless-components */
 import Component from "@ember/component";
+import { computed } from "@ember/object";
 import { service } from "@ember/service";
 import { classNameBindings } from "@ember-decorators/component";
-import discourseComputed from "discourse/lib/decorators";
 import CategoryWrapper from "./category-wrapper";
 import TagWrapper from "./tag-wrapper";
 
 @classNameBindings("shouldShow:visible")
 export default class CardsFilter extends Component {
   @service router;
+  @service siteSettings;
 
-  @discourseComputed("router.currentRoute.queryParams")
-  shouldShow() {
+  @computed("router.currentRoute.queryParams")
+  get shouldShow() {
     if (!this.siteSettings.docs_enabled) {
       return false;
     }
     return this.includedCategories?.length > 0 || this.includedTags?.length > 0;
   }
 
-  @discourseComputed("categories", "router.currentRoute.queryParams")
-  includedCategories(categories, params) {
+  @computed("categories", "router.currentRoute.queryParams")
+  get includedCategories() {
     let pluginCategories = this.siteSettings.docs_categories.split("|");
-
     let shownCategories;
 
-    if (categories) {
-      shownCategories = categories.filter((category) => {
+    if (this.categories) {
+      shownCategories = this.categories.filter((category) => {
         let currentCategory;
 
-        if (params?.category) {
+        if (this.router.currentRoute.queryParams?.category) {
           currentCategory =
-            Number(params.category) === category.id ? category.id : "";
+            Number(this.router.currentRoute.queryParams.category) ===
+            category.id
+              ? category.id
+              : "";
         }
 
         return (
@@ -41,18 +45,19 @@ export default class CardsFilter extends Component {
     return shownCategories;
   }
 
-  @discourseComputed("tags", "router.currentRoute.queryParams")
-  includedTags(tags, params) {
+  @computed("tags", "router.currentRoute.queryParams")
+  get includedTags() {
     let pluginTags = this.siteSettings.docs_tags.split("|");
-
     let shownTags;
 
-    if (tags) {
-      shownTags = tags.filter((tag) => {
+    if (this.tags) {
+      shownTags = this.tags.filter((tag) => {
         let currentTags = [];
 
-        if (params?.tags) {
-          currentTags.push(...params.tags.split("|"));
+        if (this.router.currentRoute.queryParams?.tags) {
+          currentTags.push(
+            ...this.router.currentRoute.queryParams.tags.split("|")
+          );
         }
 
         return (
@@ -64,8 +69,8 @@ export default class CardsFilter extends Component {
     return shownTags;
   }
 
-  @discourseComputed()
-  tagIcons() {
+  @computed()
+  get tagIcons() {
     let icons = {};
 
     settings.tag_icons.split("|").forEach((data) => {
@@ -75,8 +80,8 @@ export default class CardsFilter extends Component {
     return icons;
   }
 
-  @discourseComputed()
-  tagOrders() {
+  @computed()
+  get tagOrders() {
     let order = {};
 
     settings.tag_icons.split("|").forEach((data) => {
@@ -89,8 +94,8 @@ export default class CardsFilter extends Component {
     return order;
   }
 
-  @discourseComputed()
-  categoryOrders() {
+  @computed()
+  get categoryOrders() {
     let order = {};
 
     settings.category_icons.split("|").forEach((data) => {
@@ -103,8 +108,8 @@ export default class CardsFilter extends Component {
     return order;
   }
 
-  @discourseComputed()
-  categoryIcons() {
+  @computed()
+  get categoryIcons() {
     let icons = {};
 
     settings.category_icons.split("|").forEach((data) => {

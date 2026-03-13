@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-components, ember/require-tagless-components */
 import Component from "@ember/component";
 import { classNames } from "@ember-decorators/component";
 import CardsFilter from "../../../discourse/components/cards-filter";
