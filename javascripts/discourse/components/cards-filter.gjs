@@ -30,7 +30,7 @@ export default class CardsFilter extends Component {
 
         if (this.router.currentRoute.queryParams?.category) {
           currentCategory =
-            Number(this.router.currentRoute.queryParams?.category) ===
+            Number(this.router.currentRoute.queryParams.category) ===
             category.id
               ? category.id
               : "";
