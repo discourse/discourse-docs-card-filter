@@ -55,7 +55,9 @@ export default class CardsFilter extends Component {
         let currentTags = [];
 
         if (this.router.currentRoute.queryParams?.tags) {
-          currentTags.push(...this.router.currentRoute.queryParams.tags.split("|"));
+          currentTags.push(
+            ...this.router.currentRoute.queryParams.tags.split("|")
+          );
         }
 
         return (
