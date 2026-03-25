@@ -1,43 +1,64 @@
+/* eslint-disable ember/no-classic-components */
 import Component from "@ember/component";
 import { concat, hash } from "@ember/helper";
+import { computed } from "@ember/object";
 import { LinkTo } from "@ember/routing";
 import { htmlSafe } from "@ember/template";
 import { tagName } from "@ember-decorators/component";
 import icon from "discourse/helpers/d-icon";
-import discourseComputed from "discourse/lib/decorators";
 import { i18n } from "discourse-i18n";
 
 @tagName("")
 export default class CategoryWrapper extends Component {
   listOrder = ["title", "activity"];
 
-  @discourseComputed("category")
-  categoryInfo(category) {
-    return this.site.categories.findBy("id", category.id);
+  @computed("category")
+  get categoryInfo() {
+    return this.site.categories.findBy("id", this.category.id);
   }
 
-  @discourseComputed("categoryIcons", "categoryInfo.id")
-  categoryIcon(icons, id) {
-    return icons[id];
+  @computed("categoryIcons", "categoryInfo.id")
+  get categoryIcon() {
+    return this.categoryIcons[this.categoryInfo?.id];
   }
 
-  @discourseComputed("categoryOrders", "categoryInfo.id")
-  order(orders, id) {
-    if (orders[id] && orders[id].split("-").length > 0) {
+  @computed("categoryOrders", "categoryInfo.id")
+  get order() {
+    if (
+      this.categoryOrders[this.categoryInfo?.id] &&
+      this.categoryOrders[this.categoryInfo?.id].split("-").length > 0
+    ) {
       if (
-        this.listOrder.includes(orders[id].split("-")[0].trim().toLowerCase())
+        this.listOrder.includes(
+          this.categoryOrders[this.categoryInfo?.id]
+            .split("-")[0]
+            .trim()
+            .toLowerCase()
+        )
       ) {
-        return orders[id].split("-")[0].trim().toLowerCase();
+        return this.categoryOrders[this.categoryInfo?.id]
+          .split("-")[0]
+          .trim()
+          .toLowerCase();
       }
     }
 
     return null;
   }
 
-  @discourseComputed("categoryOrders", "categoryInfo.id")
-  ascending(orders, id) {
-    if (orders[id] && orders[id].split("-").length > 1) {
-      if (orders[id].split("-")[1].trim().toLowerCase().startsWith("a")) {
+  @computed("categoryOrders", "categoryInfo.id")
+  get ascending() {
+    if (
+      this.categoryOrders[this.categoryInfo?.id] &&
+      this.categoryOrders[this.categoryInfo?.id].split("-").length > 1
+    ) {
+      if (
+        this.categoryOrders[this.categoryInfo?.id]
+          .split("-")[1]
+          .trim()
+          .toLowerCase()
+          .startsWith("a")
+      ) {
         return true;
       }
     }
@@ -45,42 +66,42 @@ export default class CategoryWrapper extends Component {
     return false;
   }
 
-  @discourseComputed("categoryInfo.name")
-  categoryName(categoryName) {
-    return categoryName;
+  @computed("categoryInfo.name")
+  get categoryName() {
+    return this.categoryInfo?.name;
   }
 
-  @discourseComputed("categoryInfo.slug")
-  categorySlug(categorySlug) {
-    return categorySlug;
+  @computed("categoryInfo.slug")
+  get categorySlug() {
+    return this.categoryInfo?.slug;
   }
 
-  @discourseComputed("categoryInfo.description")
-  hasDescription(description) {
-    return description && settings.category_description;
+  @computed("categoryInfo.description")
+  get hasDescription() {
+    return this.categoryInfo?.description && settings.category_description;
   }
 
-  @discourseComputed("categoryInfo.description")
-  categoryDescription(description) {
-    return description;
+  @computed("categoryInfo.description")
+  get categoryDescription() {
+    return this.categoryInfo?.description;
   }
 
-  @discourseComputed("categoryInfo.color")
-  categoryColor(color) {
-    return `#${color}`;
+  @computed("categoryInfo.color")
+  get categoryColor() {
+    return `#${this.categoryInfo?.color}`;
   }
 
-  @discourseComputed("categoryInfo.topic_count")
-  hasTopics(count) {
-    return count >= 1;
+  @computed("categoryInfo.topic_count")
+  get hasTopics() {
+    return this.categoryInfo?.topic_count >= 1;
   }
 
-  @discourseComputed("categoryInfo.topic_count")
-  topicCount(count) {
-    if (count > 1) {
-      return `${count} ${i18n(themePrefix("topics"))}`;
+  @computed("categoryInfo.topic_count")
+  get topicCount() {
+    if (this.categoryInfo?.topic_count > 1) {
+      return `${this.categoryInfo?.topic_count} ${i18n(themePrefix("topics"))}`;
     } else {
-      return `${count} ${i18n(themePrefix("topic"))}`;
+      return `${this.categoryInfo?.topic_count} ${i18n(themePrefix("topic"))}`;
     }
   }
 
