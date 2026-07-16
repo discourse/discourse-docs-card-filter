@@ -14,7 +14,7 @@ export default class CategoryWrapper extends Component {
 
   @computed("category")
   get categoryInfo() {
-    return this.site.categories.findBy("id", this.category.id);
+    return this.site.categories.find((c) => c.id === this.category.id);
   }
 
   @computed("categoryIcons", "categoryInfo.id")
